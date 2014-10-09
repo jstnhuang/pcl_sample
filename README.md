@@ -54,5 +54,38 @@ catkin_make processor_node
 On the lab computers, point the ROS_MASTER_URI to your Turtlebot:<br />
 `setrobot softshell`
 
-And run our node:<br />
+And run our node. Notice we [remap](http://wiki.ros.org/Remapping%20Arguments) the "pointcloud2_in" topic to the Turtlebot's PointCloud2 topic:
 `rosrun pcl_sample processor_node pointcloud2_in:=/camera/depth_registered/points`
+
+## Coordinate frames
+The standard [ROS coordinate frame convention](http://wiki.ros.org/geometry/CoordinateFrameConventions) is
+* +X forward
+* +Y left
+* +Z up
+
+You can visualize this by opening up rviz on your computer:
+
+```
+setrobot softshell
+roslaunch turtlebot_rviz_launchers view_robot.launch
+```
+
+In the Displays panel, click "Add", and add the "Axes" display. It should show you the default coordinate frame, where red is x, green is y, and blue is z:
+
+![The fixed frame of the Turtlebot, obeying ROS coordinate conventions.](https://sites.google.com/site/cse481au14/labs/base_footprint.png "The fixed frame of the Turtlebot, obeying ROS coordinate conventions.")
+
+Notice that if you run `rostopic echo /camera/depth_registered/points`, you'll see something like this:
+```
+header: 
+  seq: ...
+  stamp: 
+    secs: ...
+    nsecs: ...
+  frame_id: /camera_rgb_optical_frame
+```
+
+This tells you that the coordinate frame for those messages is `/camera_rgb_optical_frame`. Now, in rviz, expand the "Axes" display options and choose "camera_rgb_optical_frame" for the reference frame. Notice that now, z axis points forward, the x axis points to the right, and the y axis points down.
+
+![The coordinate frame of the PointCloud2 data, which differs ROS coordinate conventions.](https://sites.google.com/site/cse481au14/labs/camera_rgb_optical_frame.png "The coordinate frame of the PointCloud2 data, which differs ROS coordinate conventions.")
+
+So, keep in mind that this node gives you data in a different coordinate frame from the standard ROS convention. In the future, we may want to adjust everything to use the same coordinate frame using [tf](http://wiki.ros.org/tf).
