@@ -7,7 +7,7 @@ Sample usage of PCL with incoming PointCloud2 messages.
 2. Clone this repository:
 ```
 cd ~/catkin_ws/src
-git clone git@github.com:jstnhuang/pcl_sample.git
+git clone https://github.com/jstnhuang/pcl_sample.git
 ```
 
 ## Package creation and structure
