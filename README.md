@@ -48,6 +48,7 @@ In the other, run:<br />
 Build our node:
 ```
 cd ~/catkin_ws
+catkin_make
 catkin_make processor_node
 ```
 
