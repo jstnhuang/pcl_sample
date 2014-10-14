@@ -59,6 +59,12 @@ cd catkin_ws/src
 catkin_init_workspace
 ```
 
+Note that if you do this, you need to run this to set the right environment variables for ROS:
+```
+cd ourteam/catkin_ws
+source devel/setup.bash
+```
+
 ## How to make your own package like this
 This package was created with:<br />
 `catkin_create_pkg pcl_sample pcl_conversions pcl_ros roscpp sensor_msgs`
