@@ -69,9 +69,10 @@ source devel/setup.bash
 This package was created with:<br />
 `catkin_create_pkg pcl_sample pcl_conversions pcl_ros roscpp sensor_msgs`
 
-This package is in C++. ROS packages typically put .h files in an include/packagename directory, while the .cpp files go in the src/ directory, like so:
+This package has both C++ and Python code. ROS packages typically put .py files in a scripts/ directory, .h files in an include/packagename directory, and .cpp files in the src/ directory, like so:
 ```
 pcl_sample/
+pcl_sample/scripts/pyprocessor_node.py
 pcl_sample/src/processor.cpp
 pcl_sample/src/processor_node.cpp
 pcl_sample/include/pcl_sample/processor.h
